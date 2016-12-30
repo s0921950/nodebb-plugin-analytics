@@ -60,7 +60,7 @@ GA.routeMenu = function(custom_header, callback) {
 
 GA.getNotices = function(notices, callback) {
 	notices.push({
-		done: GA.settings.activate_analytic && settings.api_url,
+		done: GA.settings.activate_analytic && GA.settings.api_url,
 		doneText: 'Forum Analytics OK',
 		notDoneText: 'Forum Analytics needs setup'
 	});
