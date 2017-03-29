@@ -116,7 +116,8 @@ GA.saveDB = function(req, viewPage, categoryName, topicName) {
 			var userData = {
 				'username': users.username,
 				'userAgent': req.req.headers['user-agent'],
-				'time': Date.now(),
+				'time': new Date(),
+				'now': Date.now(),
 				'viewPage': viewPage,
 				'categoryName': categoryName,
 				'topicName': topicName,
@@ -131,7 +132,8 @@ GA.saveDB = function(req, viewPage, categoryName, topicName) {
 		var userData = {
 				'username': 'guest',
 				'userAgent': req.req.headers['user-agent'],
-				'time': Date.now(),
+				'time': new Date(),
+				'now': Date.now(),
 				'viewPage': viewPage,
 				'categoryName': categoryName,
 				'topicName': topicName,
