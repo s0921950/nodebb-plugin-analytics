@@ -76,33 +76,35 @@ GA.getNotices = function(notices, callback) {
 GA.writeData = function(req) {
 	var viewPage, category, categoryName, topicName;
 	var referer = req.req.headers.referer;
-	var url = referer.substr(0, referer.indexOf(nconf.get('relative_path')));
-	var location = url + nconf.get('relative_path') + '/';
-	if (referer.indexOf(location) !== -1 && referer.length == location.length){
-		viewPage = 'mainPage';
-	} else {
-		viewPage = referer.replace(location, '');
-	}
-	category = viewPage.split('/')[0];
-	if (category == 'category'){
-		var cid = viewPage.split('/')[1];
-		categories.getCategoryData(cid, function (err, category) {
-			categoryName = category.name;
-			var topicName;
-			GA.saveDB(req, viewPage, categoryName, topicName);
-		});
-	} else if (category == 'topic'){
-		var tid = viewPage.split('/')[1];
-		topics.getTopicData(tid, function (err, topic) {
-			categories.getCategoryData(topic.cid, function (err, category) {
+	if (referer){
+		var url = referer.substr(0, referer.indexOf(nconf.get('relative_path')));
+		var location = url + nconf.get('relative_path') + '/';
+		if (referer.indexOf(location) !== -1 && referer.length == location.length){
+			viewPage = 'mainPage';
+		} else {
+			viewPage = referer.replace(location, '');
+		}
+		category = viewPage.split('/')[0];
+		if (category == 'category'){
+			var cid = viewPage.split('/')[1];
+			categories.getCategoryData(cid, function (err, category) {
 				categoryName = category.name;
 				var topicName;
-				GA.saveDB(req, viewPage, categoryName, topic.title);
+				GA.saveDB(req, viewPage, categoryName, topicName);
 			});
-		});
-	} else {
-		var categoryName, topicName;
-		GA.saveDB(req, viewPage, categoryName, topicName);
+		} else if (category == 'topic'){
+			var tid = viewPage.split('/')[1];
+			topics.getTopicData(tid, function (err, topic) {
+				categories.getCategoryData(topic.cid, function (err, category) {
+					categoryName = category.name;
+					var topicName;
+					GA.saveDB(req, viewPage, categoryName, topic.title);
+				});
+			});
+		} else {
+			var categoryName, topicName;
+			GA.saveDB(req, viewPage, categoryName, topicName);
+		}
 	}
 };
 
