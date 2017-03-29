@@ -1,7 +1,7 @@
 {
-	"id": "nodebb-plugin-analytics",
-	"name": "Analytics",
-	"url": "",
+    "id": "nodebb-plugin-analytics",
+    "name": "Analytics",
+    "url": "",
     "library": "./index.js",
     "templates": "templates",
     "scripts": [
@@ -11,6 +11,7 @@
         { "hook": "static:app.load", "method": "init" },
         { "hook": "filter:admin.header.build", "method": "routeMenu" },
         { "hook": "action:settings.set", "method": "onConfigChange" },
-        { "hook": "filter:admin.notices", "method": "getNotices"}
+        { "hook": "filter:admin.notices", "method": "getNotices"},
+        { "hook": "action:middleware.pageView", "method": "writeData"}
     ]
 }
