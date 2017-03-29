@@ -122,7 +122,8 @@ GA.saveDB = function(req, viewPage, categoryName, topicName) {
 				'topicName': topicName,
 				'os': req.req.useragent.os,
 				'browser': req.req.useragent.browser,
-				'platform': req.req.useragent.platform
+				'platform': req.req.useragent.platform,
+				'ip': req.req.ip
 			};
 			db.addCountLogin('user:pageview',  Date.now(), userData);
 		});
@@ -136,7 +137,8 @@ GA.saveDB = function(req, viewPage, categoryName, topicName) {
 				'topicName': topicName,
 				'os': req.req.useragent.os,
 				'browser': req.req.useragent.browser,
-				'platform': req.req.useragent.platform
+				'platform': req.req.useragent.platform,
+				'ip': req.req.ip
 			};
 		db.addCountLogin('user:pageview',  Date.now(), userData);
 	}
