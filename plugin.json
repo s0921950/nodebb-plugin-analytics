@@ -1,5 +1,5 @@
 {
-    "id": "nodebb-plugin-analytics",
+    "id": "nodebb-plugin-fsc-analytics",
     "name": "Analytics",
     "url": "",
     "library": "./index.js",
