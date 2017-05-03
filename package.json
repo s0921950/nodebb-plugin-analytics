@@ -1,5 +1,5 @@
 {
-  "name": "nodebb-plugin-fsc-analytics",
+  "name": "nodebb-plugin-analytics",
   "version": "0.1.0",
   "description": "Analytics & Measurement for NodeBB",
   "main": "index.js",
