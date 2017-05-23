@@ -95,11 +95,16 @@ GA.writeData = function(req) {
 		} else if (category == 'topic'){
 			var tid = viewPage.split('/')[1];
 			topics.getTopicData(tid, function (err, topic) {
-				categories.getCategoryData(topic.cid, function (err, category) {
-					categoryName = category.name;
-					var topicName;
-					GA.saveDB(req, viewPage, categoryName, topic.title);
-				});
+				if (topic) {
+					categories.getCategoryData(topic.cid, function (err, category) {
+						categoryName = category.name;
+						var topicName;
+						GA.saveDB(req, viewPage, categoryName, topic.title);
+					});
+				} else {
+					var categoryName, topicName;
+					GA.saveDB(req, viewPage, categoryName, topicName);
+				}
 			});
 		} else {
 			var categoryName, topicName;
